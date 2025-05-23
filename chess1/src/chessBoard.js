@@ -8,11 +8,30 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 const ChessBoard = () => {
 
+    // Logic to make the pieces seperate from the board itself
+    function initializeBoard() {
+        const initialBoard = Array(8).fill(null).map(() => Array(8).fill(null));
+
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 8; j++) {
+                initialBoard[i][j] = 'green';
+            }
+        }
+
+        for (let i = 6; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                initialBoard[i][j] = 'blue';
+            }
+        }
+
+        return initialBoard;
+    }
+
+    // Function to render the chessboard
     const renderBoard = () => {
         const square = [];
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
-                let number = i + j; 
                 const isBlackSquare = (i + j) % 2 === 0;
                 if (i < 2) {
                     square.push(
